@@ -6,7 +6,7 @@ export default [
         icon: 'icon-module',
         subs: [
             {
-                index: 'channel_list',
+                index: 'production_list',
                 title: '产品列表'
             }
         ]
