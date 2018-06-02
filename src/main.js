@@ -15,7 +15,6 @@ import vueEventCalendar from './component/vue-event-calendar';
 import btnpower from './directive/power/btn-power';
 import limitword from './directive/limit-word/limit-word';
 import {Message} from 'element-ui';
-import zkTree from '../static/element-ui/lib/tree';
 // part loading
 import fixLoading from './directive/fix_loading';
 Vue.use(fixLoading.directive);
@@ -30,7 +29,6 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.use(vueWaves.vueWaves);
 
-Vue.component(zkTree.name, zkTree);
 
 Vue.directive(leLoading.name, leLoading);
 Vue.directive(fullLoading.name, fullLoading);

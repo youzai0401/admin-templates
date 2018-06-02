@@ -15,12 +15,10 @@ export default {
         console.log('cookie:', common.getRememberMe());
         if (!common.getRememberMe()) {
             this.backLogin();
-            this.bindEvent();
         }
     },
     destroyed() {
         this.clearTimer();
-        this.unbindEvent();
     },
     data() {
         return {
@@ -41,23 +39,11 @@ export default {
             };
             timer = window.setTimeout(() => goLogin, ms);
         },
-        bindEvent() {
-            $(window).on('click mousemove', () => {
-                this.backLogin();
-            });
-            $('#lw-content').on('scroll', () => {
-                this.backLogin();
-            });
-        },
         clearTimer() {
             if (timer) {
                 window.clearTimeout(timer);
                 timer = null;
             }
-        },
-        unbindEvent() {
-            $(window).unbind('click mousemove');
-            $('#lw-content').unbind('scroll');
         }
     },
     components: {
