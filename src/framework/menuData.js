@@ -3,7 +3,7 @@ export default [
     {
         index: '1',
         title: '产品管理',
-        icon: 'icon-module',
+        icon: 'icon-chanpin',
         subs: [
             {
                 index: 'production_list',
@@ -14,7 +14,7 @@ export default [
     {
         index: '2',
         title: '客户管理',
-        icon: 'icon-webicon06-copy-copy',
+        icon: 'icon-kehuguanli',
         subs: [
             {
                 index: 'platform_list',
