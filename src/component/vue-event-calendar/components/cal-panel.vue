@@ -1,0 +1,134 @@
+<template>
+    <div class="cal-wrapper">
+        <div class="cal-header">
+            <div class="l" style="opacity: 0" v-if="(today.currentYear == calendar.params.curYear) && ((calendar.params.curMonth + 1) == today.currentMonth)">
+                <div class="arrow-left icon">&nbsp</div>
+            </div>
+            <div class="l" @click="preMonth" v-else>
+                <div class="arrow-left icon">&nbsp</div>
+            </div>
+            <div class="title">{{curYearMonth}}</div>
+            <div class="r" @click="nextMonth">
+                <div class="arrow-right icon">&nbsp</div>
+            </div>
+        </div>
+        <div class="cal-body">
+            <div class="weeks">
+                <span v-for="dayName in i18n[calendar.options.locale].dayNames" class="item">{{dayName}}</span>
+            </div>
+            <div class="dates">
+                <div v-for="date in dayList" class="item"
+                     :class="{
+            today: date.status ? (today.currentDay == date.date) : false,
+            event: date.status ? (date.title != undefined) : false,
+            [calendar.options.className] : (date.date == selectedDay)
+          }">
+                    <el-tooltip :disabled="!(date.status ? (date.title != undefined) : false)" effect="light" content="点击查看详情" placement="top">
+                    <p v-if="today.currentDay != date.date" class="date-num"
+                       @click="handleChangeCurday(date)"
+                       :style="{color: date.title != undefined ? ((date.date == selectedDay) ? customColor : customColor) : 'inherit'}">
+                        {{date.status ? date.date.split('/')[2] : '&nbsp'}}</p>
+                    <p class="date-num" @click="handleChangeCurday(date)"
+                       :style="{color: (date.title != undefined) ? '#565656' : '#52cef8'}" v-else="today.currentDay == date.date">
+                        今天</p>
+                    </el-tooltip>
+                    <!--<span v-if="date.status ? (today.currentDay == date.date) : false" class="is-today" :style="{backgroundColor: customColor }" ></span>-->
+                    <!--<span v-if="date.status ? (date.title != undefined) : false" class="is-event"-->
+                    <!--:style="{borderColor: customColor, backgroundColor: (date.date == selectedDay) ? customColor : 'inherit'}"></span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import i18n from '../i18n.js'
+    import {dateTimeFormatter, isEqualDateStr} from '../tools.js'
+
+    const inBrowser = typeof window !== 'undefined';
+
+    export default {
+        name: 'cal-panel',
+        data() {
+            return {
+                i18n,
+                currentYear: '',
+                currentMonth: ''
+            };
+        },
+        props: {
+            events: {
+                type: Array,
+                required: true
+            },
+            calendar: {
+                type: Object,
+                required: true
+            },
+            selectedDay: {
+                type: String,
+                required: false
+            }
+        },
+        computed: {
+            dayList() {
+                let firstDay = new Date(this.calendar.params.curYear + '/' + (this.calendar.params.curMonth + 1) + '/01')
+                let startTimestamp = firstDay - 1000 * 60 * 60 * 24 * firstDay.getDay()
+                let item, status, tempArr = [], tempItem
+                for (let i = 0; i < 42; i++) {
+                    item = new Date(startTimestamp + i * 1000 * 60 * 60 * 24)
+                    if (this.calendar.params.curMonth === item.getMonth()) {
+                        status = 1
+                    } else {
+                        status = 0
+                    }
+                    tempItem = {
+                        date: `${item.getFullYear()}/${item.getMonth() + 1}/${item.getDate()}`,
+                        status: status
+                    }
+                    this.events.forEach((event) => {
+                        if (isEqualDateStr(event.date, tempItem.date)) {
+                            tempItem.title = event.title
+                            tempItem.desc = event.desc || ''
+                        }
+                    })
+                    tempArr.push(tempItem)
+                }
+                return tempArr
+            },
+            today() {
+                const dateObj = new Date();
+                return {
+                    currentDay: `${dateObj.getFullYear()}/${dateObj.getMonth() + 1}/${dateObj.getDate()}`,
+                    currentYear: dateObj.getFullYear(),
+                    currentMonth: dateObj.getMonth() + 1
+                };
+            },
+            curYearMonth () {
+                let tempDate = Date.parse(new Date(`${this.calendar.params.curYear}/${this.calendar.params.curMonth + 1}/01`))
+                return dateTimeFormatter(tempDate, this.i18n[this.calendar.options.locale].format)
+            },
+            customColor () {
+                return this.calendar.options.color
+            }
+        },
+        methods: {
+            nextMonth () {
+                this.$EventCalendar.nextMonth()
+                this.$emit('month-changed', this.curYearMonth)
+            },
+            preMonth () {
+                const currentTime = new Date();
+                const currentYear = currentTime.getFullYear();
+                const currentMonth = currentTime.getMonth() + 1;
+                this.$EventCalendar.preMonth()
+                this.$emit('month-changed', this.curYearMonth)
+            },
+            handleChangeCurday (date) {
+                if (date.status) {
+                    this.$emit('cur-day-changed', date.date)
+                }
+            }
+        }
+    }
+</script>

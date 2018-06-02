@@ -1,0 +1,67 @@
+.section-part-wrap {
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  //padding: 0 20px 10px 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 6px 6px -5px rgba(139, 157, 175, .3);
+  .part-top-bar {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 20px 30px 15px 0;
+    border-bottom: 1px solid #edf0f4;
+    color: #1e2935;
+    line-height: 35px;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 15px;
+      width: 3px;
+      background: -webkit-linear-gradient(#05ace7, #28e6dc); /* Safari 5.1 - 6.0 */
+      background: -o-linear-gradient(#05ace7, #28e6dc); /* Opera 11.1 - 12.0 */
+      background: -moz-linear-gradient(#05ace7, #28e6dc); /* Firefox 3.6 - 15 */
+      background: linear-gradient(#05ace7, #28e6dc); /* 标准的语法 */
+    }
+    .part-title {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      text-indent: 30px;
+      border-left: 3px solid #0cbcd4;
+      color: #333;
+      font-weight: normal;
+    }
+
+    .top-bar-tip-icon {
+      padding: 2px;
+      width: 22px;
+      cursor: pointer;
+      vertical-align: text-bottom;
+      font-size: 24px;
+      line-height: 1;
+      color: #cbcbcb;
+      &:hover {
+        color: #777;
+      }
+    }
+    .part-select-wrap {
+      float: right;
+      text-align: right;
+      .channel-label {
+        margin-right: 15px;
+        font-size: 14px;
+        color: #333;
+      }
+      .channel-select {
+        width: 150px;
+      }
+    }
+  }
+}
+.tool-tip-content-wrap {
+  padding: 10px 15px;
+}

@@ -1,0 +1,29 @@
+.select-panel-show-title {
+  height: 22px;
+  line-height: 22px;
+}
+.show-more-title {
+  margin-right: 20px;
+}
+.show-or-hide {
+  cursor: pointer;
+  color: #1d4881;
+  span {
+  }
+  .el-icon-arrow-down {
+    transform-origin:center center;
+    transform: rotate(0deg); //返回原点
+    transition: transform 0.2s;
+  }
+  .rotate-arrow {
+    transform-origin:center center; //旋转中心要是正中间 才行
+    transform:rotate(180deg);
+    transition: transform 0.2s; //过度时间 可调
+  }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}

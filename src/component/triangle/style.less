@@ -1,0 +1,88 @@
+.tool-triangle {
+  border:1px solid #18d5ba;
+  //padding: 20px;
+  //margin: 10px 0;
+  position: relative;
+
+  &::after {
+    content:'';
+    width:35px;
+    height:35px;
+    background: url("img/triangle_left.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    transform: translate(-1px,-1px);
+
+  }
+  i.left-top-triangle {
+    position: absolute;
+    top:2px;
+    left:2px;
+    color: #fff;
+    font-style: normal;
+    transform: rotate(-45deg);
+    z-index:999;
+  }
+  i.level-out-circle {
+    width:12px;
+    height:12px;
+    display: inline-block;
+    border-radius: 50%;
+    background: #daf1ff;
+    font-style: normal;
+    vertical-align: inherit;
+    position: relative;
+    margin-right: 5px;
+
+    i.level-circle {
+      position: absolute;
+      top:2px;
+      left: 2px;
+      width:8px;
+      height:8px;
+      display: inline-block;
+      border-radius: 50%;
+      background: #1fc0ee;
+      font-style: normal;
+
+    }
+
+
+
+  }
+  .level-equipment-nums {
+    display: inline-block;
+    margin:0 5px;
+    font-size: 24px;
+    color: #1fc0ee;
+
+  }
+  .el-row {
+    margin-bottom: 15px;
+  }
+  .level-class-name {
+    width: 100px;
+  }
+  .level-name {
+    height:37px;
+    line-height: 37px;
+  }
+
+  .palt-add {
+    color: #47cbf9;
+    &:hover {
+      border-color:#47cbf9;
+    }
+  }
+
+  .palt-del {
+    color: #ff4949;
+    &:hover {
+      border-color:#ff4949;
+    }
+  }
+
+
+}
