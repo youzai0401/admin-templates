@@ -17,7 +17,7 @@ export default [
         icon: 'icon-kehuguanli',
         subs: [
             {
-                index: 'platform_list',
+                index: 'customer_list',
                 title: '客户列表'
             }
         ]
