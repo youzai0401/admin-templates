@@ -14,15 +14,6 @@ export default {
         btnText: {
             type: String
         },
-        btnPower: {
-            type: Object,
-            default() {
-                return {
-                    name: '',
-                    power: false
-                };
-            }
-        },
         click: {
             type: Function
         },

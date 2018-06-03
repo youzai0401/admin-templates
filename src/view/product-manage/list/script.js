@@ -1,4 +1,4 @@
-import server from '../../../api/resource-level-manager/resource-level-list';
+import server from '../../../api/customer-manage/resource-level-list';
 import pageMixin from '../../../mixins/page-mixins';
 import common from '../../../common/common';
 import page from '../../../component/page';
@@ -70,15 +70,7 @@ export default {
         handleEdit(id) {
             this.setIsSaveParams();
             this.$router.push({
-                path: '/resource_level_add', query: {
-                    id
-                }
-            });
-        },
-        handleCheck(id) {
-            this.setIsSaveParams();
-            this.$router.push({
-                path: '/resource_level_check', query: {
+                path: '/product_add', query: {
                     id
                 }
             });

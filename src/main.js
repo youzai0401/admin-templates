@@ -10,42 +10,16 @@ import {init} from './common/request.js';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';// 默认主题
 import './main.less';
-import vueWaves from './directive/waves';// 水波纹指令
-import vueEventCalendar from './component/vue-event-calendar';
-import btnpower from './directive/power/btn-power';
-import limitword from './directive/limit-word/limit-word';
 import {Message} from 'element-ui';
-// part loading
-import fixLoading from './directive/fix_loading';
-Vue.use(fixLoading.directive);
-// custom loading
-import leLoading from './directive/loading/src/directive';
-import fullLoading from './directive/fullloading/src/directive';
-import minLoading from './directive/min-loading/src/directive';
-// leLoading.install(Vue)
-Vue.directive(btnpower.name, btnpower);
-Vue.directive(limitword.name, limitword);
+
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
-Vue.use(vueWaves.vueWaves);
 
 
-Vue.directive(leLoading.name, leLoading);
-Vue.directive(fullLoading.name, fullLoading);
-Vue.directive(minLoading.name, minLoading);
-Vue.use(vueEventCalendar, {locale: 'zh'}); // locale can be 'zh' , 'en' , 'es', 'pt-br', 'ja', 'ko', 'fr'
 Vue.prototype.$bus = new Vue();
-// 定义全局变量
-Vue.prototype.$global = {maxL: 30};
-/* eslint-disable no-new */
+
 console.log('============================================');
-console.log('执行了main代码是的吧');
-const setLoading = () => {
-    Vue.prototype.maskLoading = false;
-    Vue.prototype.btnLoading = false;
-    Vue.prototype.modalBtnLoading = false;
-};
-setLoading();
+
 
 const vm = new Vue({
     el: '#app',
@@ -55,10 +29,21 @@ const vm = new Vue({
     components: {App}
 });
 const initMessageFunction = () => {
-    Vue.prototype.$message = ({type, message, showClose = true, duration = 3000}) => Message({type, message, customClass: `custom-${type}-message`, showClose, duration});
+    Vue.prototype.$message = ({type, message, showClose = true, duration = 3000}) => Message({
+        type,
+        message,
+        customClass: `custom-${type}-message`,
+        showClose,
+        duration
+    });
     const reSetMessage = types => {
         types.forEach(type => {
-            Vue.prototype.$message[type] = message => Message({type, message, customClass: `custom-${type}-message`, showClose: true});
+            Vue.prototype.$message[type] = message => Message({
+                type,
+                message,
+                customClass: `custom-${type}-message`,
+                showClose: true
+            });
         });
     };
     reSetMessage(['error', 'success', 'warning', 'info']);

@@ -1,4 +1,4 @@
-import server from '../../../api/resource-level-manager/resource-level-add';
+import server from '../../../api/customer-manage/resource-level-add';
 import Page from '../../../component/page';
 import customCard from '../../../component/custom-card';
 import uploadImg from '../../../component/upload-img';
@@ -123,9 +123,6 @@ export default {
 
     },
     mounted() {
-        // 获取渠道平台数据
-        this.handleGetAllChannelAndNicheGroup();
-        // 获取资源位集合列表数据
     },
     methods: {
         async handleSubmitForm(formName) {
@@ -146,7 +143,7 @@ export default {
                             message: '修改成功！',
                             type: 'success'
                         });
-                        this.$router.push({path: '/resource_level_list'});
+                        this.$router.push({path: '/product_list'});
                     }
                     this.isLoad = false;
                 } else {
@@ -158,7 +155,7 @@ export default {
                             message: '添加成功！',
                             type: 'success'
                         });
-                        this.$router.push({path: '/resource_level_list'});
+                        this.$router.push({path: '/product_list'});
                     } else {
                         // this.$message.error(res.data.message);
                         this.isLoad = false;
@@ -178,7 +175,7 @@ export default {
             return this.formData;
         },
         handleBack() {
-            this.$router.push({path: '/resource_level_list'});
+            this.$router.push({path: '/product_list'});
         }
     }
 };

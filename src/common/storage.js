@@ -37,8 +37,12 @@ const session = {
         const value = sessionStorage.getItem(key);
         return JSON.parse(value);
     },
-    clear() {sessionStorage.clear()},
-    removeItem(key) {sessionStorage.removeItem(key)},
+    clear() {
+        sessionStorage.clear()
+    },
+    removeItem(key) {
+        sessionStorage.removeItem(key)
+    },
     multiGet(keys) {
         const values = {};
         keys.forEach((key) => {

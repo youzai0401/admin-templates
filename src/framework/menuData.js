@@ -1,4 +1,3 @@
-
 export default [
     {
         index: '1',
@@ -6,7 +5,7 @@ export default [
         icon: 'icon-chanpin',
         subs: [
             {
-                index: 'production_list',
+                index: '/product_list',
                 title: '产品列表'
             }
         ]
@@ -17,7 +16,7 @@ export default [
         icon: 'icon-kehuguanli',
         subs: [
             {
-                index: 'customer_list',
+                index: '/customer_list',
                 title: '客户列表'
             }
         ]

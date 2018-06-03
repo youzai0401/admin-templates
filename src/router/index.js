@@ -27,7 +27,7 @@ const router = new Router({
 console.log('routes:', routes);
 console.log('=================================');
 NProgress.configure({showSpinner: false});
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async(to, from, next) => {
     cancelFetches();
 
     console.log('from::', from);

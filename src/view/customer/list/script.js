@@ -1,4 +1,4 @@
-import server from '../../../api/resource-level-manager/resource-level-list';
+import server from '../../../api/customer-manage/resource-level-list';
 import pageMixin from '../../../mixins/page-mixins';
 import common from '../../../common/common';
 import page from '../../../component/page';
@@ -11,12 +11,9 @@ export default {
         customCard
     },
     data() {
-        const meta = this.$router.currentRoute.meta;
         return {
-            meta,
-            btnPower: {name: 'establish', power: meta},
-            btnText: '创建呈现位',
-            title: '呈现位管理',
+            btnText: '创建客户',
+            title: '客户管理',
             tableData: [],
             paramsData: {
                 limit: 10,
@@ -43,35 +40,20 @@ export default {
         }
     },
     methods: {
-        isHaveHandle() {
-            const btns = ['edit', 'see', 'delete_key'];
-            if (this.meta.role) {
-                let index = 0;
-                for (let i = 0, len = btns.length; i < len; i++) {
-                    if (this.meta.authority.indexOf(btns[i]) === -1) {
-                        index++;
-                    }
-                }
-                if (btns.length === index) {
-                    return false;
-                }
-            }
-            return true;
-        },
         toPath() {
             this.setIsSaveParams();
-            this.$router.push('/resource_level_add');
+            this.$router.push('/customer_add');
         },
         async getList(data = this.paramsData) {
-            this.listLoading = true;
-            this.saveParams();
-            const res = await server.getResourceLevelList(data).catch(() => this.listLoading = false);
-            this.listLoading = false;
-            if (res.data.code === 200) {
-                this.tableData = this.getAddIndexTableData(res.data.data.content);
-                this.tableData = this.getTransformData(this.tableData);
-                this.paginationData.total = res.data.data.totalElements;
-            }
+            // this.listLoading = true;
+            // this.saveParams();
+            // const res = await server.getResourceLevelList(data).catch(() => this.listLoading = false);
+            // this.listLoading = false;
+            // if (res.data.code === 200) {
+            //     this.tableData = this.getAddIndexTableData(res.data.data.content);
+            //     this.tableData = this.getTransformData(this.tableData);
+            //     this.paginationData.total = res.data.data.totalElements;
+            // }
         },
         getTransformData(data) {
             data.forEach(item => {
@@ -88,15 +70,7 @@ export default {
         handleEdit(id) {
             this.setIsSaveParams();
             this.$router.push({
-                path: '/resource_level_add', query: {
-                    id
-                }
-            });
-        },
-        handleCheck(id) {
-            this.setIsSaveParams();
-            this.$router.push({
-                path: '/resource_level_check', query: {
+                path: '/customer_add', query: {
                     id
                 }
             });
@@ -142,6 +116,7 @@ export default {
             return common.format(row[column.property], 'yyyy-MM-dd');
         }
     },
-    async mounted() {}
+    mounted() {
+    }
 
 };

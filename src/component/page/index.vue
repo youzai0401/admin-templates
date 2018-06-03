@@ -13,7 +13,7 @@
             <!--<img :src="imgUrl" alt="">-->
             <span class="title">{{title}}</span>
             <!--<img :src="imgUrl" alt="" style="visibility: hidden;">-->
-            <el-button v-btnpower="btnPower.power" :data-name="btnPower.name" type="primary" v-if="btnText" @click="handleClick" class="btn">
+            <el-button type="primary" v-if="btnText" @click="handleClick" class="btn">
                 {{btnText}}
             </el-button>
         </div>

@@ -1,6 +1,6 @@
 <template>
     <!--工具栏-->
-    <page :title="title">
+    <page :title="title" :btnText="btnText" @click="toPath">
         <div>
             <!--工具条-->
             <el-row :span="24" class="toolbar">
@@ -18,13 +18,13 @@
                             <el-option label="下架" :value=2></el-option>
                         </el-select>
                     </el-form-item>
-                        <!--<el-button @click="handleReset">重置</el-button>-->
-                        <el-button type="primary" @click="handleSearch">查询</el-button>
+                    <!--<el-button @click="handleReset">重置</el-button>-->
+                    <el-button type="primary" @click="handleSearch">查询</el-button>
                 </el-form>
             </el-row>
             <!--// 表单-->
             <custom-card :width="100" class="custom-card-padding-table">
-                <el-table :data="tableData" highlight-current-row stripe  v-leloading="listLoading" align="center"
+                <el-table :data="tableData" highlight-current-row stripe align="center"
                           style="width: 100%;" border>
                     <!--<el-table-column type="selection" width="55">-->
                     <!--</el-table-column>-->
@@ -39,12 +39,13 @@
                     <el-table-column align="center" prop="node" label="设备来源/平台" width="140"></el-table-column>
                     <el-table-column align="center" prop="nicheGroupName" label="呈现位分类"></el-table-column>
                     <el-table-column align="center" prop="creatorName" label="创建人"></el-table-column>
-                    <el-table-column align="center" prop="status" :formatter="formatterStatus" label="状态" width="100"></el-table-column>
+                    <el-table-column align="center" prop="status" :formatter="formatterStatus" label="状态"
+                                     width="100"></el-table-column>
                     <el-table-column align="center" label="操作" width="200">
                         <template scope="scope">
-                            <el-button size="text" class="btn_line" v-btnpower="meta" data-name="edit" @click="handleEdit(scope.row.id)">编辑</el-button>
-                            <el-button type="text" class="btn_line" v-btnpower="meta" data-name="see" @click="handleCheck(scope.row.id)">查看</el-button>
-                            <el-button type="text" class="btn_line" v-btnpower="meta" data-name="delete_key" @click="handleDel(scope.row)">删除</el-button>
+                            <el-button size="text" class="btn_line" @click="handleEdit(scope.row.id)">编辑</el-button>
+                            <el-button type="text" class="btn_line" @click="handleCheck(scope.row.id)">查看</el-button>
+                            <el-button type="text" class="btn_line" @click="handleDel(scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
