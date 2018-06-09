@@ -1,7 +1,10 @@
 import axios from 'axios';
 import storage from '../../common/storage.js';
 
+storage.local.setItem('user', {name: 'admin'});
+
 export default {
+
     data() {
         return {
             isActive: false,
