@@ -26,34 +26,32 @@
             <custom-card :width="100" class="custom-card-padding-table">
                 <el-table :data="tableData" highlight-current-row stripe align="center"
                           style="width: 100%;" border>
-                    <!--<el-table-column type="selection" width="55">-->
-                    <!--</el-table-column>-->
                     <el-table-column align="center" width="80" prop="index" label="序号"></el-table-column>
-
                     <el-table-column align="center" prop="name" label="姓名"></el-table-column>
                     <el-table-column align="center" prop="identityId" label="身份证号"></el-table-column>
-                    <el-table-column align="center" prop="cardFront" label="身份证人像面">
+                    <el-table-column align="center" prop="value" label="金额"></el-table-column>
+                    <el-table-column align="center" prop="periodName" label="借款期限"></el-table-column>
+                    <el-table-column align="center" prop="purpose" label="借款用途"></el-table-column>
+                    <el-table-column align="center" label="借款状态">
                         <template slot-scope="scope">
-                            <img :src="scope.row.cardFront" class="table-img"/>
-                        </template>
-                    </el-table-column>
-                    <el-table-column align="center" prop="cardBack" label="身份证背面">
-                        <template slot-scope="scope">
-                            <img :src="scope.row.cardBack" class="table-img"/>
-                        </template>
-                    </el-table-column>
-                    <el-table-column align="center" prop="cardPerson" label="人和身份证合照">
-                        <template slot-scope="scope">
-                            <img :src="scope.row.cardPerson" class="table-img"/>
+                            <el-select v-model="scope.row.status" placeholder="请选择">
+                                <el-option label="拒绝" :value="1"
+                                           @click.native="handleChangeStatus(scope.row.id,1)"></el-option>
+                                <el-option label="待审批" :value="2"
+                                           @click.native="handleChangeStatus(scope.row.id,2)"></el-option>
+                                <el-option label="审批通过" :value="3"
+                                           @click.native.="handleChangeStatus(scope.row.id,3)"></el-option>
+                            </el-select>
                         </template>
                     </el-table-column>
                     <el-table-column align="center" prop="createTime" :formatter="yearMonDayFilter"
                                      label="更新时间"></el-table-column>
                     <el-table-column align="center" prop="createTime" :formatter="yearMonDayFilter"
                                      label="创建时间"></el-table-column>
-                    <el-table-column align="center" label="操作" width="100">
+                    <el-table-column align="center" label="操作" width="120">
                         <template slot-scope="scope">
-                            <el-button size="text" class="btn_line" @click="handleEdit(scope.row.openid)">详情</el-button>
+                            <!--<el-button size="text" class="btn_line" @click="handleEdit(scope.row.openid)">详情</el-button>-->
+                            <el-button size="text" class="btn_line" @click="handleDel(scope.row.id)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>

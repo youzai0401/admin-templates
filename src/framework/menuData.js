@@ -20,6 +20,17 @@ export default [
                 title: '客户列表'
             }
         ]
+    },
+    {
+        index: '3',
+        title: '申请管理',
+        icon: 'icon-kehuguanli',
+        subs: [
+            {
+                index: '/apply_list',
+                title: '申请列表'
+            }
+        ]
     }
 ];
 

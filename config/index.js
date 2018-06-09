@@ -40,8 +40,8 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/iworld': {
-        target: 'http://221.181.100.150:18090',
+      '/admin': {
+        target: 'http://111.230.115.167:8701',
         changeOrigin: true,
       },
     },

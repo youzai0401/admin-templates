@@ -28,7 +28,7 @@ export default {
         },
         action: {
             type: String,
-            default: '/pyramid/uploadImg'
+            default: '/api/img'
         },
         listType: {
             type: String,
@@ -36,7 +36,7 @@ export default {
         },
         name: {
             type: String,
-            default: 'filename'
+            default: 'img'
         },
         multiple: {
             type: Boolean,
@@ -80,17 +80,18 @@ export default {
             return this.currentValue.length >= this.maxCount;
         },
         uploadUrl() {
-            const maxWidth = this.imgWidth || '';
-            const maxHeight = this.imgHeight || '';
-            const minWidth = this.minWidth || '';
-            const minHeight = this.minHeight || '';
-            const fixedWidth = this.fixedWidth || '';
-            const fixedHeight = this.fixedHeight || '';
-            if (fixedWidth && fixedHeight) {
-                return `${this.action}?maxWidth=${fixedWidth}&&maxHeight=${fixedHeight}&&minWidth=${fixedWidth}&&minHeight=${fixedHeight}`;
-            } else {
-                return `${this.action}?maxWidth=${maxWidth}&&maxHeight=${maxHeight}&&minWidth=${minWidth}&&minHeight=${minHeight}`;
-            }
+            // const maxWidth = this.imgWidth || '';
+            // const maxHeight = this.imgHeight || '';
+            // const minWidth = this.minWidth || '';
+            // const minHeight = this.minHeight || '';
+            // const fixedWidth = this.fixedWidth || '';
+            // const fixedHeight = this.fixedHeight || '';
+            // if (fixedWidth && fixedHeight) {
+            //     return `${this.action}?maxWidth=${fixedWidth}&&maxHeight=${fixedHeight}&&minWidth=${fixedWidth}&&minHeight=${fixedHeight}`;
+            // } else {
+            //     return `${this.action}?maxWidth=${maxWidth}&&maxHeight=${maxHeight}&&minWidth=${minWidth}&&minHeight=${minHeight}`;
+            // }
+            return this.action;
         }
         ,
         accept() {
@@ -137,9 +138,10 @@ export default {
             }
         },
         handleSuccessUpload(response, file, fileList) {
+            console.log(1111);
             if (response.code === 200) {
-                file.url = response.data.url;
-                this.$set(this.currentValue, this.currentValue.length, {url: response.data.url});
+                file.url = response.data;
+                this.$set(this.currentValue, this.currentValue.length, {url: response.data});
                 this.updateValue();
             } else {
                 this.processMoreImages(fileList);

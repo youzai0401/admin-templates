@@ -7,23 +7,17 @@ export default {
             disable: true,
             image: {},
             logining: false,
-            getCodePath: '/pyramid/user/authcode',
             formData: {
-                loginName: '',
-                password: '',
-                authCode: '',
-                rememberMe: false
+                username: '',
+                password: ''
             },
             // 验证规则
             rules: {
-                loginName: [
+                username: [
                     {required: true, message: '请输入账号', trigger: 'blur'}
                 ],
                 password: [
                     {required: true, message: '请输入密码', trigger: 'blur'}
-                ],
-                authCode: [
-                    {required: true, message: '请输入验证码', trigger: 'blur'}
                 ]
             }
         };
@@ -52,7 +46,7 @@ export default {
             this.getCodePath = `${this.getCodePath}?date=${date}`;
         },
         async login() {
-            const res = await fetch().post('/pyramid/user/login', this.formData).catch(() => {
+            const res = await fetch().post('admin/login', this.formData).catch(() => {
                 this.handleReloadCode();
                 this.logining = false;
             });
@@ -60,12 +54,12 @@ export default {
             if (res.data.code === 200) {
                 common.store.clear();
                 common.store.setUser(res.data.data);
-                this.$router.push('/');
+                this.$router.push('/customer_list');
             }
             this.handleReloadCode();
         },
         validateBtn() {
-            if (this.formData.loginName && this.formData.password && this.formData.authCode) {
+            if (this.formData.username && this.formData.password) {
                 this.disable = false;
             } else {
                 this.disable = true;

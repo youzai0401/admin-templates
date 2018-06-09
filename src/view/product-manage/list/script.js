@@ -1,4 +1,4 @@
-import server from '../../../api/customer-manage/resource-level-list';
+import server from '../../../api/product-manage/index';
 import pageMixin from '../../../mixins/page-mixins';
 import common from '../../../common/common';
 import page from '../../../component/page';
@@ -85,21 +85,21 @@ export default {
             });
         },
         deleteResourceLevel(id) {
-            server.deleteResourceLevel(id).then(res => {
-                if (res.data.code === 200) {
-                    this.$message.success('删除成功');
-                    this.getList();
-                }
-                // if (res.status === 200) {
-                //     this.$message({
-                //         message: res.data.message,
-                //         type: 'error'
-                //     });
-                //     this.getList();
-                // } else {
-                //     this.$message.error(res.data.data);
-                // }
-            });
+            // server.deleteResourceLevel(id).then(res => {
+            //     if (res.data.code === 200) {
+            //         this.$message.success('删除成功');
+            //         this.getList();
+            //     }
+            // if (res.status === 200) {
+            //     this.$message({
+            //         message: res.data.message,
+            //         type: 'error'
+            //     });
+            //     this.getList();
+            // } else {
+            //     this.$message.error(res.data.data);
+            // }
+            // });
         },
         formatterStatus(row, column, cellValue) {
             switch (row.status) {

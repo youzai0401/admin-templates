@@ -2,30 +2,23 @@ import server from '../../../api/customer-manage/index';
 import Page from '../../../component/page';
 import customCard from '../../../component/custom-card';
 import uploadImg from '../../../component/upload-img';
-import Block from '../../../component/block';
-import deepcopy from 'deepcopy';
 
 export default {
     components: {
         Page,
         uploadImg,
-        customCard,
-        Block
+        customCard
     },
     data() {
         return {
             isLoad: false,
             id: this.$route.query.id,
             userInfo: {
-                openid: this.$route.query.id,
                 name: '',
                 identityId: '',
                 cardFront: [],
                 cardBack: [],
-                cardPerson: []
-            },
-            userData: {
-                openid: this.$route.query.id,
+                cardPerson: [],
                 phoneNum: '',
                 permanentAddr: '',
                 houseType: '',
@@ -44,26 +37,23 @@ export default {
                 remark: ''
             },
             bankInfo: {
-                openid: this.$route.query.id,
                 name: '',
                 identityId: '',
                 bankAddr: '',
-                account: ''
+                account: '',
             },
-            linkInfo: [{
-                openid: this.$route.query.id,
+            linkInfo: {
                 relation: '',
                 name: '',
                 phoneNum: '',
                 company: ''
-            }],
-            debtInfo: [{
-                openid: this.$route.query.id,
+            },
+            debtInfo: {
                 name: '',
                 value: '',
                 useValue: '',
                 type: ''
-            }],
+            },
             // 表单验证配置
             userInfoRules: {
                 name: [{required: true, message: '请输入姓名'}
@@ -107,7 +97,7 @@ export default {
                     {required: true, message: '请输入介绍人电话'}
                 ], remark: [
                     {required: true, message: '请输入备注'}
-                ]
+                ],
             },
             bankInfoRules: {
                 name: [
@@ -179,48 +169,32 @@ export default {
         }
     },
     created() {
-        this.getUserInfo();
-        this.getUserData();
-        this.getBankInfo();
-        this.getLinkInfo();
-        this.getDebtInfo();
+        // this.getUserInfo();
+        // this.getBankInfo();
+        // this.getLinkInfo();
+        // this.getDebtInfo();
     },
     mounted() {
     },
     methods: {
         async handleSubmitForm() {
-            console.log(this.$refs);
+            console.log(this.$refs.length);
             const VALID_STATUS = [];
             for (const item in this.$refs) {
-                if (this.$refs[item]) {
-                    this.$refs[item].validate(valid => {
-                        VALID_STATUS.push(valid);
-                    });
-                }
+                console.log(item);
+                this.$refs[item].validate(valid => {
+                    VALID_STATUS.push(valid);
+                });
             }
             if (VALID_STATUS.indexOf(false) < 0) {
-                const that = this;
                 this.isLoad = true;
-                const userInfo = deepcopy(this.userInfo);
-                userInfo.cardBack = userInfo.cardBack[0].url;
-                userInfo.cardFront = userInfo.cardFront[0].url;
-                userInfo.cardPerson = userInfo.cardPerson[0].url;
-                server.saveAll(userInfo, this.userData, this.bankInfo, this.linkInfo, this.debtInfo, (a, b, c, d, e) => {
-                    console.log('all suc', a, b, c, d, e);
+                if (this.id) {
+                    this.$router.push({path: '/customer_list'});
                     this.isLoad = false;
-                    that.$alert('保存成功！', '提示', {
-                        confirmButtonText: '确定',
-                        callback: () => {
-                            this.$router.push({path: '/customer_list'});
-                        }
-                    });
-                }).catch(() => {
-                    this.$message({
-                        message: '网络错误',
-                        type: 'error'
-                    });
+                } else {
+                    this.$router.push({path: '/customer_list'});
                     this.isLoad = false;
-                });
+                }
             } else {
                 this.$message({
                     message: '请将表单填写完整',
@@ -239,42 +213,16 @@ export default {
             return this.formData;
         },
         getUserInfo() {
-            server.getUserInfo(this.id).then(res => {
-                if (res.data.code === 200) {
-                    res.data.data.cardBack = [{url: res.data.data.cardBack}];
-                    res.data.data.cardFront = [{url: res.data.data.cardFront}];
-                    res.data.data.cardPerson = [{url: res.data.data.cardPerson}];
-                    this.userInfo = res.data.data;
-                }
-            });
-        },
-        getUserData() {
-            server.getUserData(this.id).then(res => {
-                if (res.data.code === 200) {
-                    this.userData = res.data.data;
-                }
-            });
+            server.getUserInfo(this.id);
         },
         getBankInfo() {
-            server.getBankInfo(this.id).then(res => {
-                if (res.data.code === 200) {
-                    this.bankInfo = res.data.data;
-                }
-            });
+            server.getBankInfo(this.id);
         },
         getLinkInfo() {
-            server.getLinkInfo(this.id).then(res => {
-                if (res.data.code === 200) {
-                    this.linkInfo = res.data.data;
-                }
-            });
+            server.getLinkInfo(this.id);
         },
         getDebtInfo() {
-            server.getDebtInfo(this.id).then(res => {
-                if (res.data.code === 200) {
-                    this.debtInfo = res.data.data;
-                }
-            });
+            server.getDebtInfo(this.id);
         },
         handleBack() {
             this.$router.push({path: '/customer_list'});

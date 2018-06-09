@@ -7,12 +7,15 @@
 html, body {
   font-size: @baseFontSize;
 }
+
 .el-new-tree:before {
   content: "";
 }
-.el-tree-node__content,.el-tree-node ,.el-form-item__content:focus{
+
+.el-tree-node__content, .el-tree-node, .el-form-item__content:focus {
   outline: none !important;
 }
+
 ///*一下是设计稿中统一的样式*/
 //.material-add .el-form-item .el-form-item .el-form-item__content {
 //  margin-left: 100px;
@@ -521,7 +524,6 @@ html, body {
   height: 0;
 }
 
-
 // 去掉表格hover效果
 .remove-table-hover {
   .el-table__row:hover td:first-child:after {
@@ -728,69 +730,6 @@ html, body {
 
 .el-steps .progress {
   margin: 29px -3px;
-}
-
-//重写messagebox 样式
-.el-message-box__status {
-  display: none;
-}
-
-.el-message-box__message {
-  margin-left: 0 !important;
-  text-align: center;
-  font-size: 16px;
-  p {
-    font-weight: normal;
-  }
-}
-
-.el-message-box__btns {
-  padding: 10px 20px 20px;
-  position: relative;
-  height: 36px;
-  //.el-button {
-  //  position: absolute;
-  //  left : 100px;
-  //}
-  .el-button--default {
-    &:first-child {
-      position: absolute;
-      right: 140px;
-      border: none;
-      color: #999999;
-      box-shadow: 0 3px 10px 0 rgba(179, 193, 198, 0.74);
-      &:hover {
-        background-color: #bdbdbd;
-        color: #fff;
-      }
-    }
-    &:last-child {
-      position: absolute;
-      left: 140px;
-      background: linear-gradient(#48cdfa, #02bdff); /* 标准的语法 */
-      border: none;
-      box-shadow: 0 3px 10px 0 rgba(82, 206, 248, 0.74);
-      color: #fff;
-      &:hover {
-        color: #fff;
-        background: linear-gradient(#00bafe, #00abfe); /* 标准的语法 */
-      }
-    }
-  }
-}
-
-.el-message-box__title,
-.el-message-box__headerbtn {
-  display: none;
-}
-
-.el-message-box {
-  width: 543px;
-  border-radius: 4px;
-  box-shadow: 0px 0px 65px 0px rgba(63, 111, 219, 0.25);
-  .el-button {
-    padding: 0 30px;
-  }
 }
 
 .el-button--primary {
@@ -1200,33 +1139,32 @@ html, body {
   }
 }
 
-.radio-box{
+.radio-box {
   .count-down-wrap {
     width: 60px;
     display: inline-block;
     margin-right: 10px;
-    .el-input__inner{
+    .el-input__inner {
       text-align: center;
     }
   }
 }
 
-.big-wheel{
-  .upload-img .element-upload-tips{
+.big-wheel {
+  .upload-img .element-upload-tips {
     line-height: 25px;
   }
 }
 
-.see-by-choose .color-choose,.see-by-choose .base-data,.see-by-guess .color-choose{
-  .el-form-item__label{
-    width: 110px!important;
+.see-by-choose .color-choose, .see-by-choose .base-data, .see-by-guess .color-choose {
+  .el-form-item__label {
+    width: 110px !important;
   }
 }
 
-
-.speech-bubbles-lable  .color-choose{
-  .el-form-item__label{
-    width: 110px!important;
+.speech-bubbles-lable .color-choose {
+  .el-form-item__label {
+    width: 110px !important;
   }
 }
 
@@ -1236,13 +1174,14 @@ html, body {
 }
 
 // 活动选择投放方式部分日历组件放大缩小样式
-.small-calendar-item .el-form-item__content{
-  margin-left: 0!important;
+.small-calendar-item .el-form-item__content {
+  margin-left: 0 !important;
   transform: scale(.4);
   position: relative;
   left: -100px;
   top: -170px;
 }
+
 /*无hover的btn*/
 .btn-group-container .no-hover.el-button--default:hover {
   color: #999;
@@ -1250,5 +1189,5 @@ html, body {
 
 /* 表单 覆盖必填*号 */
 .not-required .el-form-item__label:before {
-  content: ''!important;
+  content: '' !important;
 }

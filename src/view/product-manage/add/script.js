@@ -1,4 +1,4 @@
-import server from '../../../api/customer-manage/resource-level-add';
+import server from '../../../api/product-manage/index';
 import Page from '../../../component/page';
 import customCard from '../../../component/custom-card';
 import uploadImg from '../../../component/upload-img';
@@ -134,34 +134,34 @@ export default {
             if (parentVaild) {
                 // submit  do  something
                 this.isLoad = true;
-                if (this.id) {
-                    const res = await server.editResourceLevel(this.getParams()).catch(err => {
-                        this.isLoad = false;
-                    });
-                    if (res.data.code === 200) {
-                        this.$message({
-                            message: '修改成功！',
-                            type: 'success'
-                        });
-                        this.$router.push({path: '/product_list'});
-                    }
-                    this.isLoad = false;
-                } else {
-                    const res = await server.addResourceLevel(this.getParams()).catch(err => {
-                        this.isLoad = false;
-                    });
-                    if (res.data.code === 200) {
-                        this.$message({
-                            message: '添加成功！',
-                            type: 'success'
-                        });
-                        this.$router.push({path: '/product_list'});
-                    } else {
-                        // this.$message.error(res.data.message);
-                        this.isLoad = false;
-                    }
-                    this.isLoad = false;
-                }
+                // if (this.id) {
+                //     const res = await server.editResourceLevel(this.getParams()).catch(err => {
+                //         this.isLoad = false;
+                //     });
+                //     if (res.data.code === 200) {
+                //         this.$message({
+                //             message: '修改成功！',
+                //             type: 'success'
+                //         });
+                //         this.$router.push({path: '/product_list'});
+                //     }
+                //     this.isLoad = false;
+                // } else {
+                //     const res = await server.addResourceLevel(this.getParams()).catch(err => {
+                //         this.isLoad = false;
+                //     });
+                //     if (res.data.code === 200) {
+                //         this.$message({
+                //             message: '添加成功！',
+                //             type: 'success'
+                //         });
+                //         this.$router.push({path: '/product_list'});
+                //     } else {
+                //         // this.$message.error(res.data.message);
+                //         this.isLoad = false;
+                //     }
+                //     this.isLoad = false;
+                // }
             }
         },
         getParams() {
