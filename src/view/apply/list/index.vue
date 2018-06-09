@@ -33,7 +33,7 @@
                     <el-table-column align="center" prop="periodName" label="借款期限"></el-table-column>
                     <el-table-column align="center" prop="purpose" label="借款用途"></el-table-column>
                     <el-table-column align="center" label="借款状态">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <el-select v-model="scope.row.status" placeholder="请选择">
                                 <el-option label="拒绝" :value="1"
                                            @click.native="handleChangeStatus(scope.row.id,1)"></el-option>
@@ -49,7 +49,7 @@
                     <el-table-column align="center" prop="createTime" :formatter="yearMonDayFilter"
                                      label="创建时间"></el-table-column>
                     <el-table-column align="center" label="操作" width="120">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <!--<el-button size="text" class="btn_line" @click="handleEdit(scope.row.openid)">详情</el-button>-->
                             <el-button size="text" class="btn_line" @click="handleDel(scope.row.id)">删除</el-button>
                         </template>

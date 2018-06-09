@@ -32,7 +32,7 @@
 
                     <el-table-column align="center" prop="name" label="呈现位名称"></el-table-column>
                     <el-table-column align="center" prop="displayUrl" label="呈现位示例图">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <img :src="scope.row.displayUrl" class="table-img"/>
                         </template>
                     </el-table-column>
@@ -42,7 +42,7 @@
                     <el-table-column align="center" prop="status" :formatter="formatterStatus" label="状态"
                                      width="100"></el-table-column>
                     <el-table-column align="center" label="操作" width="200">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <el-button size="text" class="btn_line" @click="handleEdit(scope.row.id)">编辑</el-button>
                             <el-button type="text" class="btn_line" @click="handleCheck(scope.row.id)">查看</el-button>
                             <el-button type="text" class="btn_line" @click="handleDel(scope.row)">删除</el-button>

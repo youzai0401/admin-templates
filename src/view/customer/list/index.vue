@@ -33,17 +33,17 @@
                     <el-table-column align="center" prop="name" label="姓名"></el-table-column>
                     <el-table-column align="center" prop="identityId" label="身份证号"></el-table-column>
                     <el-table-column align="center" prop="cardFront" label="身份证人像面">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <img :src="scope.row.cardFront" class="table-img"/>
                         </template>
                     </el-table-column>
                     <el-table-column align="center" prop="cardBack" label="身份证背面">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <img :src="scope.row.cardBack" class="table-img"/>
                         </template>
                     </el-table-column>
                     <el-table-column align="center" prop="cardPerson" label="人和身份证合照">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <img :src="scope.row.cardPerson" class="table-img"/>
                         </template>
                     </el-table-column>
@@ -52,7 +52,7 @@
                     <el-table-column align="center" prop="createTime" :formatter="yearMonDayFilter"
                                      label="创建时间"></el-table-column>
                     <el-table-column align="center" label="操作" width="100">
-                        <template slot-scope="scope">
+                        <template scope="scope">
                             <el-button size="text" class="btn_line" @click="handleEdit(scope.row.openid)">详情</el-button>
                         </template>
                     </el-table-column>
