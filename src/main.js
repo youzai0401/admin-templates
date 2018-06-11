@@ -67,7 +67,7 @@ init({
         // vm.$message.success('操作成功');
     },
     error(err) {
-        if (err.response.status === 401) {
+        if (err.response.status === 403) {
             return vm.$router.replace('/login');
         }
         console.log('err:', err);

@@ -7,10 +7,9 @@ export default {
         return fetch().get(serviceUrl.getApplyListPath, data);
     },
     changeApplyStatus(id, status) {
-        return fetch().put(serviceUrl.changeApplyStatusPath(id), status);
+        return fetch().put(serviceUrl.changeApplyStatusPath(id, status));
     },
     deleteApply(id) {
-        return fetch().put(serviceUrl.deleteApplyPath(id));
-
+        return fetch().delete(serviceUrl.deleteApplyPath(id));
     }
 };

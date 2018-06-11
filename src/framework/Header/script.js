@@ -36,15 +36,17 @@ export default {
         },
         async logout() {
             console.log(333, this.userName);
-            const res = await axios.get('/pyramid/user/logout', {params: {userName: this.userName}}).catch(() => {
-            });
-            if (res.data.code === 200) {
-                storage.local.removeItem('user');
-                this.$router.replace('/login');
-                console.log('退出成功');
-            } else {
-                vm.$message.error('退出失败');
-            }
+            // const res = await axios.get('/pyramid/user/logout', {params: {userName: this.userName}}).catch(() => {
+            // });
+            // if (res.data.code === 200) {
+            //     storage.local.removeItem('user');
+            //     this.$router.replace('/login');
+            //     console.log('退出成功');
+            // } else {
+            //     vm.$message.error('退出失败');
+            // }
+            this.clearAllCookie();
+            this.$router.push('/login');
         },
         editPassword() {
             this.$router.push('/edit_password');
@@ -53,6 +55,14 @@ export default {
         switchSpread() {
             this.isActive = !this.isActive;
             this.$bus.$emit('collapsed', this.isActive);
+        },
+        clearAllCookie() {
+            const keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+            if (keys) {
+                for (let i = keys.length; i--;) {
+                    document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString();
+                }
+            }
         }
     }
 };

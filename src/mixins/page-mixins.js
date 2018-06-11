@@ -10,8 +10,8 @@
  *   .limit 每条显示多少个
  *   .total 总数
  * paramsData为接口数据
- *   .limit
- *   .offset
+ *   .size
+ *   .page
  * saveParamsData在具体页面点击查询或者其他查询操作时执行（点分页查询不用管）
  * isSaveParams离开当前列表时是否保存查询的各种字段，比如在点击编辑或查看等进入二级页面的操作时执行setIsSaveParams
  */
@@ -25,8 +25,8 @@ export default {
             pageSizes: [10, 20, 30, 50, 80, 100],
             paginationData: {
                 currentPage: 1,
-                limit: 10,
-                total: 0
+                size: 10,
+                page: 1
             },
             isSearch: false,
             isSaveParams: false
@@ -50,8 +50,8 @@ export default {
     methods: {
         changeSize(size) {
             console.log(`每页 ${size} 条`);
-            this.paramsData.limit = size;
-            this.paginationData.limit = size;
+            this.paramsData.size = size;
+            this.paginationData.size = size;
             this.paginationData.currentPage = 1;
             this.getList(this.paramsData);
         },
@@ -62,21 +62,21 @@ export default {
             console.log(`当前页: ${curPage}`);
             // 更新currentPage数据
             this.paginationData.currentPage = curPage;
-            this.paramsData.offset = (curPage - 1) * this.paramsData.limit;
+            this.paramsData.page = curPage;
             this.getList(this.paramsData);
         },
         getAddIndexTableData(data) {
             data.forEach((dataItem, index) => {
-                dataItem.index = this.paramsData.offset + index + 1;
+                dataItem.index = this.paramsData.page + index;
             });
             return data;
         },
-        resetOffset() {
+        resetpage() {
             if (this.paginationData.currentPage !== 1) {
                 this.isSearch = true;
             }
             this.paginationData.currentPage = 1;
-            this.paramsData.offset = 0;
+            this.paramsData.page = 1;
         },
         saveParams() {
             sessionParamsData = {...this.paramsData};

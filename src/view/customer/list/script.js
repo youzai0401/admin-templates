@@ -16,14 +16,10 @@ export default {
             title: '客户管理',
             tableData: [],
             paramsData: {
-                limit: 10,
-                offset: 0,
-                name: '',
-                creatorName: '',
-                status: 0
+                size: 10,
+                page: 1
             },
             listLoading: false,
-            newTreeData: []
         };
     },
     created() {

@@ -4,7 +4,7 @@ import serviceUrl from './serviceUrl';
 export default {
     // 用户列表接口
     getUserList(data) {
-        return fetch().get(serviceUrl.getUserListPath, data);
+        return fetch().get(serviceUrl.getUserListPath, {params: data});
     },
     // 身份信息
     getUserInfo(id) {

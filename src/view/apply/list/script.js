@@ -16,11 +16,8 @@ export default {
             title: '申请管理',
             tableData: [],
             paramsData: {
-                limit: 10,
-                offset: 0,
-                name: '',
-                creatorName: '',
-                status: 0
+                size: 10,
+                page: 1
             },
             listLoading: false,
             newTreeData: []
@@ -47,67 +44,9 @@ export default {
         async getList(data = this.paramsData) {
             this.listLoading = true;
             this.saveParams();
-            let res = await server.getApplyList(data).catch(() => this.listLoading = false);
+            const res = await server.getApplyList(data).catch(() => this.listLoading = false);
             this.listLoading = false;
             console.log('userlist', res);
-
-            res = {
-                data: {
-                    code: 200,
-                    data: {
-                        content: [
-                            {
-                                id: 1,
-                                openid: 'zltest4',
-                                purpose: null,
-                                periodId: null,
-                                periodName: null,
-                                value: null,
-                                status: 2,
-                                createTime: null,
-                                updateTime: 1528449148402,
-                                name: '周志文4',
-                                identityId: '43928374661983746'
-                            },
-                            {
-                                id: 2,
-                                openid: 'zltest4',
-                                purpose: null,
-                                periodId: null,
-                                periodName: null,
-                                value: null,
-                                status: 1,
-                                createTime: null,
-                                updateTime: 1528449148402,
-                                name: '周志文4',
-                                identityId: '43928374661983746'
-                            },
-                            {
-                                id: 3,
-                                openid: 'zltest4',
-                                purpose: null,
-                                periodId: null,
-                                periodName: null,
-                                value: null,
-                                status: 3,
-                                createTime: null,
-                                updateTime: 1528449148402,
-                                name: '周志文4',
-                                identityId: '43928374661983746'
-                            }
-                        ],
-                        last: true,
-                        totalPages: 1,
-                        totalElements: 1,
-                        number: 0,
-                        size: 10,
-                        sort: null,
-                        first: true,
-                        numberOfElements: 1
-                    },
-                    message: 'success'
-                }
-            };
             if (res.data.code === 200) {
                 this.tableData = this.getAddIndexTableData(res.data.data.content);
                 this.tableData = this.getTransformData(this.tableData);
@@ -134,20 +73,21 @@ export default {
                 }
             });
         },
-        handleDel({id}) {
+        handleDel(id) {
             this.$confirm('是否确认删除?', '提示', {
                 confirmButtonText: '是',
                 cancelButtonText: '否',
                 type: 'warning'
             }).then(() => {
                 server.deleteApply(id).then(res => {
-                    if (res.data.code = 200) {
+                    if (res.data.code === 200) {
                         this.$message({
                             message: '删除成功',
                             type: 'success'
                         });
+                        this.getList();
                     }
-                })
+                });
             });
         },
         handleChangeStatus(id, status) {

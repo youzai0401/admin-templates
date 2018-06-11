@@ -13,68 +13,22 @@ export default {
     data() {
         return {
             isLoad: false,
-            pageLoad: false,
-            isFirst: true,
-            detailData: {},
             id: this.$route.query.id,
-            treeData: [],
-            defaultProps: {
-                children: 'subSimpleNodeList',
-                label: 'name'
-            },
-            channelItems: [],
-            resourceItems: [],
-            originalRespondData: [],
-            nicheGroup: [],
-            uploadImagesLength: 0,
             formData: {
-                status: 2,
-                type: '',
-                channelId: '',
-                rootId: '',
-                // area: [{
-                //     rootId: '',
-                //     ids: []
-                // }],
                 name: '',
-                nicheUrl: '',
-                imageList: [],
-                defaultUrl: '',
-                createTime: '',
-                nicheGroupId: '',
-                creatorId: ''
+                rank: '',
+                rate: '',
             },
             // 表单验证配置
             rules: {
-                type: [
-                    {required: true, message: '请选择资源位类型'}
-                ],
-                channelId: [
-                    {required: true, message: '请选择设备来源'}
-                ],
-                rootId: [
-                    {required: true, message: '请选择设备来源下的平台'}
-                ],
                 name: [
-                    {required: true, message: '请输入资源位名称'},
-                    {validator: validators.validateCharacterLength()}
+                    {required: true, message: '请输入名称'}
                 ],
-                nicheUrl: [
-                    {required: true, message: '请输入呈现位访问编号'}
-                    // {validator: validators.validateIsUrl()}
+                rank: [
+                    {type: 'number', required: true, message: '请输入数字'}
                 ],
-                imageList: [
-                    {required: true, message: '请上传图片'}
-                ],
-                defaultUrl: [
-                    {required: true, message: '请填写默认活动url'},
-                    {validator: validators.validateIsUrl()}
-                ],
-                'area[0].ids': [
-                    {required: true, message: '请勾选支持的设备来源'}
-                ],
-                nicheGroupId: [
-                    {required: true, message: '请选择资源位集合'}
+                rate: [
+                    {required: true, message: '请输入利率'}
                 ]
             }
         };
@@ -102,29 +56,24 @@ export default {
                     title: '创建产品'
                 }];
             return this.id ? editTitle : addTitle;
-        },
-        resourceLevelStr() {
-            let resourceLevelStr = '';
-            switch (parseInt(this.formData.type, 10)) {
-                case 1:
-                    resourceLevelStr = '普通呈现位';
-                    break;
-                case 2:
-                    resourceLevelStr = '视频呈现位';
-                    break;
-                case 3:
-                    resourceLevelStr = 'push呈现位';
-                    break;
-            }
-            return resourceLevelStr;
         }
     },
     async created() {
-
+        if (this.id) {
+            this.getProduction();
+        }
     },
     mounted() {
     },
     methods: {
+        getProduction() {
+            server.getProduction(this.id).then(res => {
+                console.log(res);
+                this.formData = res.data.data;
+            }).catch(err => {
+                this.isLoad = false;
+            });
+        },
         async handleSubmitForm(formName) {
             let parentVaild;
             console.log(this.$refs[formName]);
@@ -134,34 +83,34 @@ export default {
             if (parentVaild) {
                 // submit  do  something
                 this.isLoad = true;
-                // if (this.id) {
-                //     const res = await server.editResourceLevel(this.getParams()).catch(err => {
-                //         this.isLoad = false;
-                //     });
-                //     if (res.data.code === 200) {
-                //         this.$message({
-                //             message: '修改成功！',
-                //             type: 'success'
-                //         });
-                //         this.$router.push({path: '/product_list'});
-                //     }
-                //     this.isLoad = false;
-                // } else {
-                //     const res = await server.addResourceLevel(this.getParams()).catch(err => {
-                //         this.isLoad = false;
-                //     });
-                //     if (res.data.code === 200) {
-                //         this.$message({
-                //             message: '添加成功！',
-                //             type: 'success'
-                //         });
-                //         this.$router.push({path: '/product_list'});
-                //     } else {
-                //         // this.$message.error(res.data.message);
-                //         this.isLoad = false;
-                //     }
-                //     this.isLoad = false;
-                // }
+                if (this.id) {
+                    const res = await server.editProduction(this.getParams()).catch(err => {
+                        this.isLoad = false;
+                    });
+                    if (res.data.code === 200) {
+                        this.$message({
+                            message: '修改成功！',
+                            type: 'success'
+                        });
+                        this.$router.push({path: '/product_list'});
+                    }
+                    this.isLoad = false;
+                } else {
+                    const res = await server.editProduction(this.getParams()).catch(err => {
+                        this.isLoad = false;
+                    });
+                    if (res.data.code === 200) {
+                        this.$message({
+                            message: '添加成功！',
+                            type: 'success'
+                        });
+                        this.$router.push({path: '/product_list'});
+                    } else {
+                        // this.$message.error(res.data.message);
+                        this.isLoad = false;
+                    }
+                    this.isLoad = false;
+                }
             }
         },
         getParams() {
