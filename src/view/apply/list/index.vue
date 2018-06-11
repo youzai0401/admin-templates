@@ -40,7 +40,7 @@
                                 <el-option label="待审批" :value="2"
                                            @click.native="handleChangeStatus(scope.row.id,2)"></el-option>
                                 <el-option label="审批通过" :value="3"
-                                           @click.native.="handleChangeStatus(scope.row.id,3)"></el-option>
+                                           @click.native="handleChangeStatus(scope.row.id,3)"></el-option>
                             </el-select>
                         </template>
                     </el-table-column>

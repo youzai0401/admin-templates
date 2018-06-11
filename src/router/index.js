@@ -61,7 +61,7 @@ router.beforeEach(async(to, from, next) => {
         return next();
     }
     if (to.path === '/') { // 如果已登录去home
-        return next('/home');
+        return next('/customer_list');
     }
     return next();
     // if (!isAddRouter) { // 如果没有添加router

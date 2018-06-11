@@ -103,6 +103,7 @@ export default {
                         type: 'error'
                     });
                 }
+                this.getList();
             });
         },
         formatterStatus(row) {

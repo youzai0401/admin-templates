@@ -10,5 +10,9 @@ export default [
         name: 'home',
         component: resolve => require(['./Home/index.vue'], resolve),
         children: childrenRoutes
+    }, {
+        path: '/home',
+        redirect: '/customer_list'
     }
-];
+]
+;
