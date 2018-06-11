@@ -67,7 +67,7 @@ export default {
         },
         getAddIndexTableData(data) {
             data.forEach((dataItem, index) => {
-                dataItem.index = this.paramsData.page + index;
+                dataItem.index = this.paramsData.size * (this.paramsData.page - 1) + index + 1;
             });
             return data;
         },
