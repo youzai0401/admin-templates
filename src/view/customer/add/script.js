@@ -94,19 +94,19 @@ export default {
                 ], sector: [
                     {required: true, message: '请输入所在部门'}
                 ], position: [
-                    {required: true, message: '请输入所在职位'}
+                    {required: false, message: '请输入所在职位'}
                 ], companyPhone: [
-                    {required: true, message: '请输入公司电话'}
+                    {required: false, message: '请输入公司电话'}
                 ], jobAge: [
-                    {required: true, message: '请输入工龄'}
+                    {required: false, message: '请输入工龄'}
                 ], incomeMon: [
-                    {required: true, message: '请输入月收入'}
+                    {required: false, message: '请输入月收入'}
                 ], introducerName: [
-                    {required: true, message: '请输入介绍人姓名'}
+                    {required: false, message: '请输入介绍人姓名'}
                 ], introducerPhone: [
-                    {required: true, message: '请输入介绍人电话'}
+                    {required: false, message: '请输入介绍人电话'}
                 ], remark: [
-                    {required: true, message: '请输入备注'}
+                    {required: false, message: '请输入备注'}
                 ]
             },
             bankInfoRules: {

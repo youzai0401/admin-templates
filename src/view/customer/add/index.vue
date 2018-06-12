@@ -60,28 +60,28 @@
                     <el-form-item label="公司地址" prop="companyAddr" required tabindex="-1">
                         <el-input v-model="userData.companyAddr"></el-input>
                     </el-form-item>
-                    <el-form-item label="所在部门" prop="sector" required tabindex="-1">
+                    <el-form-item label="所在部门" prop="sector"  tabindex="-1">
                         <el-input v-model="userData.sector"></el-input>
                     </el-form-item>
-                    <el-form-item label="所在职位" prop="position" required tabindex="-1">
+                    <el-form-item label="所在职位" prop="position"  tabindex="-1">
                         <el-input v-model="userData.position"></el-input>
                     </el-form-item>
-                    <el-form-item label="公司电话" prop="companyPhone" required tabindex="-1">
+                    <el-form-item label="公司电话" prop="companyPhone"  tabindex="-1">
                         <el-input v-model="userData.companyPhone"></el-input>
                     </el-form-item>
-                    <el-form-item label="工龄" prop="jobAge" required tabindex="-1">
+                    <el-form-item label="工龄" prop="jobAge"  tabindex="-1">
                         <el-input v-model="userData.jobAge"></el-input>
                     </el-form-item>
-                    <el-form-item label="月收入" prop="incomeMon" required tabindex="-1">
+                    <el-form-item label="月收入" prop="incomeMon"  tabindex="-1">
                         <el-input v-model="userData.incomeMon"></el-input>
                     </el-form-item>
-                    <el-form-item label="介绍人姓名" prop="introducerName" required tabindex="-1">
+                    <el-form-item label="介绍人姓名" prop="introducerName"  tabindex="-1">
                         <el-input v-model="userData.introducerName"></el-input>
                     </el-form-item>
-                    <el-form-item label="介绍人电话" prop="introducerPhone" required tabindex="-1">
+                    <el-form-item label="介绍人电话" prop="introducerPhone"  tabindex="-1">
                         <el-input v-model="userData.introducerPhone"></el-input>
                     </el-form-item>
-                    <el-form-item label="备注" prop="remark" required tabindex="-1">
+                    <el-form-item label="备注" prop="remark"  tabindex="-1">
                         <el-input type="textarea" v-model="userData.remark"></el-input>
                     </el-form-item>
                 </el-form>
@@ -107,7 +107,7 @@
             <custom-card title="联系人信息" class="custom-card-padding-form">
                 <Block :list="linkInfo" :max="10">
                     <template slot="item" scope="{item,index}">
-                        <el-form :model="item"
+                        <el-form :model="item" v-if="index < 2"
                                  :ref="`linkInfo${index}`" label-width="150px"
                                  class="form-wrap"
                                  label-position="left">
@@ -124,6 +124,23 @@
                                 <el-input v-model="item.company"></el-input>
                             </el-form-item>
                         </el-form>
+                        <el-form :model="item" v-else
+                                 :ref="`linkInfo${index}`" label-width="150px"
+                                 class="form-wrap"
+                                 label-position="left">
+                            <el-form-item label="联系人关系" prop="relation"  tabindex="-1">
+                                <el-input v-model="item.relation"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系人姓名" prop="name"  tabindex="-1">
+                                <el-input v-model="item.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系人手机号" prop="phoneNum"  tabindex="-1">
+                                <el-input v-model="item.phoneNum"></el-input>
+                            </el-form-item>
+                            <el-form-item label="联系人单位" prop="company"  tabindex="-1">
+                                <el-input v-model="item.company"></el-input>
+                            </el-form-item>
+                        </el-form>
                     </template>
                 </Block>
             </custom-card>
@@ -134,16 +151,16 @@
                                  :ref="`debtInfo${index}`" label-width="150px"
                                  class="form-wrap block"
                                  label-position="left">
-                            <el-form-item label="欠债名称" prop="name" required tabindex="-1">
+                            <el-form-item label="欠债名称" prop="name" tabindex="-1">
                                 <el-input v-model="item.name"></el-input>
                             </el-form-item>
-                            <el-form-item label="额度" prop="value" required tabindex="-1">
+                            <el-form-item label="额度" prop="value" tabindex="-1">
                                 <el-input v-model="item.value"></el-input>
                             </el-form-item>
-                            <el-form-item label="使用额度" prop="useValue" required tabindex="-1">
+                            <el-form-item label="使用额度" prop="useValue" tabindex="-1">
                                 <el-input v-model="item.useValue"></el-input>
                             </el-form-item>
-                            <el-form-item label="类型" prop="type" required tabindex="-1">
+                            <el-form-item label="类型" prop="type" tabindex="-1">
                                 <el-radio-group v-model="item.type">
                                     <el-radio :label="1">银行</el-radio>
                                     <el-radio :label="2">其他</el-radio>
