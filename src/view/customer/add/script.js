@@ -240,7 +240,7 @@ export default {
         },
         getUserInfo() {
             server.getUserInfo(this.id).then(res => {
-                if (res.data.code === 200) {
+                if (res.data.code === 200 && res.data.data) {
                     res.data.data.cardBack = [{url: res.data.data.cardBack}];
                     res.data.data.cardFront = [{url: res.data.data.cardFront}];
                     res.data.data.cardPerson = [{url: res.data.data.cardPerson}];
@@ -251,28 +251,36 @@ export default {
         getUserData() {
             server.getUserData(this.id).then(res => {
                 if (res.data.code === 200) {
-                    this.userData = res.data.data;
+                    if (res.data.data) {
+                        this.userData = res.data.data;
+                    }
                 }
             });
         },
         getBankInfo() {
             server.getBankInfo(this.id).then(res => {
                 if (res.data.code === 200) {
-                    this.bankInfo = res.data.data;
+                    if (res.data.data) {
+                        this.bankInfo = res.data.data;
+                    }
                 }
             });
         },
         getLinkInfo() {
             server.getLinkInfo(this.id).then(res => {
                 if (res.data.code === 200) {
-                    this.linkInfo = res.data.data;
+                    if (res.data.data && res.data.data.length !== 0) {
+                        this.linkInfo = res.data.data;
+                    }
                 }
             });
         },
         getDebtInfo() {
             server.getDebtInfo(this.id).then(res => {
                 if (res.data.code === 200) {
-                    this.debtInfo = res.data.data;
+                    if (res.data.data && res.data.data.length !== 0) {
+                        this.debtInfo = res.data.data;
+                    }
                 }
             });
         },

@@ -106,7 +106,7 @@
             </custom-card>
             <custom-card title="联系人信息" class="custom-card-padding-form">
                 <Block :list="linkInfo" :max="10">
-                    <template slot="item" slot-scope="{item,index}">
+                    <template slot="item" scope="{item,index}">
                         <el-form :model="item"
                                  :ref="`linkInfo${index}`" label-width="150px"
                                  class="form-wrap"
@@ -129,7 +129,7 @@
             </custom-card>
             <custom-card title="负债信息" class="custom-card-padding-form">
                 <Block :list="debtInfo" :max="10">
-                    <template slot="item" slot-scope="{item,index}">
+                    <template slot="item" scope="{item,index}">
                         <el-form :model="item"
                                  :ref="`debtInfo${index}`" label-width="150px"
                                  class="form-wrap block"
