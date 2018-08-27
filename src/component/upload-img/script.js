@@ -28,7 +28,7 @@ export default {
         },
         action: {
             type: String,
-            default: '/api/img'
+            default: '/admin/img'
         },
         listType: {
             type: String,
