@@ -62,7 +62,7 @@ export default {
             return data;
         },
         handleSearch() {
-            this.resetOffset();
+            this.resetpage();
             this.getList();
         },
         handleEdit(id) {

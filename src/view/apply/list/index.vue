@@ -3,25 +3,25 @@
     <page :title="title" @click="toPath">
         <div>
             <!--工具条-->
-            <!--<el-row :span="24" class="toolbar">-->
-            <!--<el-form :inline="true">-->
-            <!--<el-form-item label="呈现位名称">-->
-            <!--<el-input placeholder="" v-model="paramsData.name"></el-input>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="创建人">-->
-            <!--<el-input placeholder="" v-model="paramsData.creatorName"></el-input>-->
-            <!--</el-form-item>-->
-            <!--<el-form-item label="状态" prop="status">-->
-            <!--<el-select v-model="paramsData.status" placeholder="">-->
-            <!--<el-option label="全部" :value=0></el-option>-->
-            <!--<el-option label="上架" :value=1></el-option>-->
-            <!--<el-option label="下架" :value=2></el-option>-->
-            <!--</el-select>-->
-            <!--</el-form-item>-->
-            <!--&lt;!&ndash;<el-button @click="handleReset">重置</el-button>&ndash;&gt;-->
-            <!--<el-button type="primary" @click="handleSearch">查询</el-button>-->
-            <!--</el-form>-->
-            <!--</el-row>-->
+            <el-row :span="24" class="toolbar">
+                <el-form :inline="true">
+                    <el-form-item label="姓名">
+                        <el-input placeholder="" v-model="paramsData.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="身份证">
+                        <el-input placeholder="" v-model="paramsData.identifyId"></el-input>
+                    </el-form-item>
+                    <!--<el-form-item label="状态" prop="status">-->
+                    <!--<el-select v-model="paramsData.status" placeholder="">-->
+                    <!--<el-option label="全部" :value=0></el-option>-->
+                    <!--<el-option label="上架" :value=1></el-option>-->
+                    <!--<el-option label="下架" :value=2></el-option>-->
+                    <!--</el-select>-->
+                    <!--</el-form-item>-->
+                    <!--<el-button @click="handleReset">重置</el-button>-->
+                    <el-button type="primary" @click="handleSearch">查询</el-button>
+                </el-form>
+            </el-row>
             <!--// 表单-->
             <custom-card :width="100" class="custom-card-padding-table">
                 <el-table :data="tableData" highlight-current-row stripe align="center"
