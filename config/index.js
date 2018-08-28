@@ -7,7 +7,7 @@ var publicPath = {
   dev: '/',
   test: '/',
   demo: '/',
-  production: 'http://111.230.115.167:8090/',
+  production: './',
   //production: '/',
 };
 console.log('构建环境输出11:');
