@@ -35,6 +35,9 @@
                     <el-form-item label="借款人手机号" prop="phoneNum" required tabindex="-1">
                         <el-input v-model="userData.phoneNum"></el-input>
                     </el-form-item>
+                    <el-form-item label="手机号服务密码" prop="phoneServicePassword" tabindex="-1">
+                        <el-input v-model="userData.phoneServicePassword"></el-input>
+                    </el-form-item>
                     <el-form-item label="户籍所在地" prop="permanentAddr" required tabindex="-1">
                         <el-input v-model="userData.permanentAddr"></el-input>
                     </el-form-item>

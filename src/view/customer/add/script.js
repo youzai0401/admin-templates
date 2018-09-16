@@ -27,6 +27,7 @@ export default {
             userData: {
                 openid: this.$route.query.id,
                 phoneNum: '',
+                phoneServicePassword: '',
                 permanentAddr: '',
                 houseType: '',
                 houseAddr: '',
